@@ -1,0 +1,388 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  bulkEdit:
+    Properties:
+      Fill: =RGBA(237, 237, 237, 1)
+      Height: =2100    //Max(App.Height, App.MinScreenHeight)
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: "=Set(getStatus, If( Trim(First( [@PowerBIIntegration].Data).Role) = \"Scientific Reviewer\", \"Awaiting Scientific Review\", \"Awaiting Medical Review\"));\r\n\r\n\r\n\r\n\r\nClearCollect(\r\n        Getdata,\r\n        ShowColumns(\r\n           \r\n                vs_review_workflow_data\r\n               // Status = getStatus\r\n            ,\r\n            Role,\r\n            Status,\r\n            data_management_query,\r\n            medical_query,\r\n            medical_reviewer_comment,\r\n            non_query_action,\r\n            participant_id,\r\n            project_code,\r\n            record_id,\r\n            scientific_reviewer_comment,\r\n            visit_date\r\n        )\r\n    ); "
+      Width: =1000//Max(App.Width, App.MinScreenWidth)
+    Children:
+      - lbl_bulkEditWarning:
+          Control: Label@2.5.1
+          Group: grp_infoBanner
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.Dotted
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(239, 238, 254, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Semibold
+            Height: =79
+            Size: =16
+            Text: ="All selected records will be updated." & Char(10) & "If no records are selected, all records currently shown in the report will be updated."
+            Width: =846
+            X: =154
+            Y: =1806
+      - Image1:
+          Control: Image@2.2.3
+          Group: grp_infoBanner
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(239, 238, 254, 1)
+            Height: =119
+            Image: ='Toast_Notification_Ui_Design_at_Annie_Ettinger_blog-removebg-preview'
+            PaddingBottom: =10
+            PaddingLeft: =10
+            PaddingRight: =10
+            PaddingTop: =10
+            Width: =139
+            X: =15
+            Y: =1769
+      - Rectangle2:
+          Control: Rectangle@2.3.0
+          Group: grp_infoBanner
+          Properties:
+            BorderColor: =RGBA(204, 231, 246, 1)
+            Fill: =RGBA(84, 88, 247, 1)
+            Height: =119
+            Width: =15
+            Y: =1769
+      - lbl_bulkEditWarning_1:
+          Control: Label@2.5.1
+          Group: grp_infoBanner
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            BorderStyle: =BorderStyle.Dotted
+            DisplayMode: =DisplayMode.View
+            Fill: =RGBA(239, 238, 254, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            Size: =20
+            Text: ="Info"
+            Width: =845
+            X: =154
+            Y: =1769
+      - Icon2_9:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(116, 116, 116, 1)
+            BorderThickness: =2
+            Color: =RGBA(105, 121, 126, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =0
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.HorizontalLine
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =1000
+            Y: =187
+      - Label2_1:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =35
+            Text: ="v10"
+            Width: =59
+            X: =940
+            Y: =2064
+      - Project Roles_36:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =58
+            Text: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", "Enter scientific reviewer comment to update in bulk","Scientific Reviewer Comment")
+            Visible: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer",  true, false)
+            Width: =908
+            X: =53
+            Y: =281
+      - txt_sci_reviewer_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(102, 102, 102, 1)
+            DisplayMode: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", DisplayMode.Edit, DisplayMode.View)
+            Fill: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer",  RGBA(255, 255, 255, 1), RGBA(237, 237, 237, 1))
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =371
+            HintText: =
+            HoverBorderColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            MaxLength: =255
+            Mode: =TextMode.MultiLine
+            OnSelect: =
+            PressedBorderColor: =RGBA(255, 255, 255, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Size: =20
+            Visible: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer",  true, false)
+            Width: =911
+            X: =50
+            Y: =359
+      - Project Roles_37:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =56
+            Text: |-
+              =
+
+
+              If(First([@PowerBIIntegration].Data).Role = "Medical Reviewer","Enter medical reviewer comment to update in bulk","Medical Reviewer Comment")
+            Visible: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer",  false, true)
+            Width: =902
+            X: =59
+            Y: =893
+      - txt_med_reviewer_1:
+          Control: Classic/TextInput@2.3.2
+          Properties:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Default: =""
+            DisabledBorderColor: =RGBA(102, 102, 102, 1)
+            DisabledColor: =RGBA(102, 102, 102, 1) //RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA (219, 226, 233,1) //RGBA(0, 0, 0, 1)
+            DisplayMode: =If(First([@PowerBIIntegration].Data).Role = "Medical Reviewer", DisplayMode.Edit, DisplayMode.View)
+            Fill: =If(First([@PowerBIIntegration].Data).Role = "Medical Reviewer",  RGBA(255, 255, 255, 1), RGBA(237, 237, 237, 1))
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =371
+            HintText: =
+            HoverBorderColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            MaxLength: =255
+            Mode: =TextMode.MultiLine
+            OnSelect: =
+            PressedBorderColor: =RGBA(255, 255, 255, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Size: =20
+            Visible: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer",  false, true)
+            Width: =911
+            X: =51
+            Y: =959
+      - Icon2_10:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(116, 116, 116, 1)
+            BorderThickness: =2
+            Color: =RGBA(105, 121, 126, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =0
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.HorizontalLine
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(105, 121, 126, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Width: =1000
+            Y: =1889
+      - btn_Submit_1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(219, 219, 219, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0.5)
+            DisplayMode: =
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            Height: =95
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 1)
+            OnSelect: "=UpdateContext({ showSpinner: true });\n\n// 1. Build the collection. \n// We include the \"ID\" to tell Patch whether to Update (ID exists) or Create (ID is blank).\nClearCollect(\n    colSafeUpdates,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        With(\n            {\n                // Try to find the existing record in SQL\n                _existingRecord: LookUp(\n                    vs_review_workflow_data,\n                    record_id = _item.record_id\n                )\n            },\n            {\n                // SYSTEM ID: If found, use it (Update). If blank, leave blank (Create).\n                ID: _existingRecord.ID, \n                \n                // --- FIELDS TO UPDATE (From Bulk Edit Screen) ---\n                Status: \"Awaiting Medical Review\",\n                scientific_reviewer_comment: txt_sci_reviewer_1.Text,\n                scientific_review_modified_by: User().FullName,\n                scientific_review_modified_on: Now(),\n                bulk_update: \"Yes\",\n                Role: First([@PowerBIIntegration].Data).Role,\n                \n                // --- MANDATORY FIELDS FOR NEW RECORDS ---\n                // These are required if we are creating a row. \n                // For updates, passing the same value is harmless.\n                record_id: _item.record_id,\n                participant_id: _item.participant_id,\n                project_code: Value(_item.project_code),\n                visit_date: DateTimeValue(_item.visit_date)\n                \n                // --- OMITTED FIELDS (To Protect Data) ---\n                // We deliberately exclude 'medical_query', 'data_management_query', etc.\n                // - For Updates: SQL keeps the existing values.\n                // - For Creates: SQL sets them to NULL (correct for a fresh review).\n            }\n        )\n    )\n);\n\n// 2. Safety Check: Ensure we don't submit empty rows\nRemoveIf(colSafeUpdates, IsBlank(record_id));\n\n// 3. Single Patch to Database (Handles both Updates and Creates)\nIf(\n    CountRows(colSafeUpdates) > 0,\n    Patch(\n        vs_review_workflow_data,\n        colSafeUpdates\n    );\n    Notify(\n        \"Success! \" & CountRows(PowerBIIntegration.Data) & \" records were updated.\nContinue bulk editing until all records are cleared from the screen.\",\n        NotificationType.Success\n    ),\n    Notify(\n        \"No records to update.\",\n        NotificationType.Warning\n    )\n);\n\n// 4. Audit Logging\nClearCollect(\n    colAuditPayload,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        {\n            Status: \"Awaiting Medical Review\",\n            record_id: _item.record_id,\n            visit_date: DateTimeValue(_item.visit_date),\n            participant_id: _item.participant_id,\n            project_code: Value(_item.project_code),\n            Role: First([@PowerBIIntegration].Data).Role,\n            scientific_reviewer_comment: txt_sci_reviewer_1.Text,\n            scientific_review_modified_by: User().FullName,\n            scientific_review_modified_on: Now(),\n            bulk_update: \"Yes\"\n        }\n    )\n);\n\n// 5. Trigger Flow\nCollect(\n    vs_review_workflow_data_audit,\n    colAuditPayload\n);\n\nSet(\n    varFlowResult, \n    'Button->InvokeanHTTPrequest'.Run()\n);\n\nIf(\n    varFlowResult.datasetrefreshstatus = \"Completed\",\n    Notify(\"Flow processed successfully.\", NotificationType.Success);\n    PowerBIIntegration.Refresh();\n    Reset(txt_med_reviewer_1);\n    Reset(txt_sci_reviewer_1),\n    Notify(\"Update Failed or Flow Error.\", NotificationType.Error)\n);\nNavigate('Scientific Reviewer',BorderStyle.None);\nUpdateContext({ showSpinner: false });"
+            PressedBorderColor: =ColorFade(RGBA(105, 121, 126, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 0, 0, 1)
+            Size: =20
+            Text: ="Submit"
+            Visible: '=If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", true, false) '
+            X: =367
+            Y: =1953
+      - btn_Notify_scientific_reviewer_1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(219, 219, 219, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0.5)
+            DisplayMode: =
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            Height: =101
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 1)
+            OnSelect: "=UpdateContext({ showSpinner: true });\nClearCollect(\n    colSafeUpdates,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        With(\n            { _realRecord: LookUp(vs_review_workflow_data, record_id = _item.record_id) },\n\n            If(\n                !IsBlank(_realRecord),\n                Patch(\n                    _realRecord,\n                    {\n                        Status: \"Awaiting Scientific Review\",\n                        medical_review_modified_by: User().FullName,\n                        medical_review_modified_on: Now(),\n                        medical_reviewer_comment: txt_med_reviewer_1.Text,\n                        bulk_update: \"Yes\",\n                        Role: First([@PowerBIIntegration].Data).Role\n                    }\n                )\n            )\n        )\n    )\n);\n\n\nRemoveIf(colSafeUpdates, IsBlank(record_id));\n\n\nIf(\n    CountRows(colSafeUpdates) > 0,\n    Patch(vs_review_workflow_data, colSafeUpdates)\n);\n\n\nClearCollect(colBulkAudit,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        {\n            Status: \"Awaiting Scientific Review\",\n            record_id: _item.record_id,\n            visit_date: DateTimeValue(_item.visit_date),\n            participant_id: _item.participant_id,\n            \n            project_code: Value(_item.project_code),\n            Role: First([@PowerBIIntegration].Data).Role,\n            \n            medical_reviewer_comment: txt_med_reviewer_1.Text,\n            medical_review_modified_by: User().FullName,\n            medical_review_modified_on: Now(),\n            \n            scientific_reviewer_comment: txt_sci_reviewer_1.Text,\n            bulk_update: \"Yes\"\n        }\n    )\n);\n\n\nCollect(vs_review_workflow_data_audit, colBulkAudit);\n\n\nSet(\n    varFlowResult, \n    'Button->InvokeanHTTPrequest'.Run()\n);\n\nIf(\n    varFlowResult.datasetrefreshstatus = \"Completed\",\n    // IF SUCCESS:\n    Notify(\n        \"Success! \" & CountRows(PowerBIIntegration.Data) & \" records were sent back to scientific reviewer. Continue bulk editing until all records are cleared from the screen.\",\n        NotificationType.Success\n    );\n    PowerBIIntegration.Refresh();\n    Reset(txt_med_reviewer_1);\n    Reset(txt_sci_reviewer_1),\n    \n    // IF FAILED\n    Notify(\n        \"Update Failed. Please check the data and retry.\",\n        NotificationType.Error\n    )\n);\nNavigate('Scientific Reviewer',BorderStyle.None);\nUpdateContext({ showSpinner: false });\n\n\n\n////////////////////////////////////////////////////////////////////\n//Notify(\"Record returned to Scientific Reviewer.\", NotificationType.Success);\n//'Button->InvokeanHTTPrequest'.Run();\n//PowerBIIntegration.Refresh();\n\n//Reset(txt_med_reviewer_1);\n//Reset(txt_sci_reviewer_1);"
+            PressedBorderColor: =ColorFade(RGBA(105, 121, 126, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 0, 0, 1)
+            Size: =20
+            Text: ="Notify Scientific Reviewer"
+            Visible: '=If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", false, true) '
+            Width: =270
+            X: =88
+            Y: =1930
+      - btn_Approve_1:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(219, 219, 219, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(255, 255, 255, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0.5)
+            DisplayMode: =
+            Fill: =RGBA(0, 0, 0, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            Height: =101
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(0, 0, 0, 1)
+            OnSelect: "=UpdateContext({ showSpinner: true });\nClearCollect(\n    colSafeUpdates,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        With(\n            {\n                _realRecord: LookUp(\n                    vs_review_workflow_data,\n                    record_id = _item.record_id\n                )\n            },\n            If(\n                !IsBlank(_realRecord),\n                Patch(\n                    _realRecord,\n                    {\n                        Status: \"Review Completed\",\n                        medical_reviewer_comment: txt_med_reviewer_1.Text,\n                        medical_review_modified_by: User().FullName,\n                        medical_review_modified_on: Now(),\n                        bulk_update: \"Yes\",\n                        Role: First([@PowerBIIntegration].Data).Role\n                    }\n                )\n            )\n        )\n    )\n);\nRemoveIf(\n    colSafeUpdates,\n    IsBlank(record_id)\n);\nIf(\n    CountRows(colSafeUpdates) > 0,\n    Patch(\n        vs_review_workflow_data,\n        colSafeUpdates\n    )\n);\nClearCollect(\n    colBulkAudit,\n    ForAll(\n        [@PowerBIIntegration].Data As _item,\n        {\n            Status: \"Review Completed\",\n            record_id: _item.record_id,\n            visit_date: DateTimeValue(_item.visit_date),\n            participant_id: _item.participant_id,\n            project_code: Value(_item.project_code),\n            Role: First([@PowerBIIntegration].Data).Role,\n            medical_reviewer_comment: txt_med_reviewer_1.Text,\n            medical_review_modified_by: User().FullName,\n            medical_review_modified_on: Now(),\n            scientific_reviewer_comment: txt_sci_reviewer_1.Text,\n            bulk_update: \"Yes\"\n        }\n    )\n);\nCollect(\n    vs_review_workflow_data_audit,\n    colBulkAudit\n);\n\nSet(\n    varFlowResult, \n    'Button->InvokeanHTTPrequest'.Run()\n);\n\nIf(\n    varFlowResult.datasetrefreshstatus = \"Completed\",\n    // IF SUCCESS:\n    Notify(\n        \"Success! \" & CountRows(PowerBIIntegration.Data) & \" records were updated.\nContinue bulk editing until all records are cleared from the screen.\",\n        NotificationType.Success\n    );\n    PowerBIIntegration.Refresh();\n    Reset(txt_med_reviewer_1);\n    Reset(txt_sci_reviewer_1),\n    \n    // IF FAILED\n    Notify(\n        \"Update Failed. Please check the data and retry.\",\n        NotificationType.Error\n    )\n);\nNavigate('Scientific Reviewer',BorderStyle.None);\nUpdateContext({ showSpinner: false });\n\n\n///////////////////////////////////////////\n//Notify(\n//    \"Review Completed Successfully!\",\n//    NotificationType.Success\n//);\n//'Button->InvokeanHTTPrequest'.Run();\n//PowerBIIntegration.Refresh();\n\n//Reset(txt_med_reviewer_1);\n//Reset(txt_sci_reviewer_1);"
+            PressedBorderColor: =ColorFade(RGBA(105, 121, 126, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 0, 0, 1)
+            Size: =20
+            Text: ="Approve"
+            Visible: '=If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", false, true) '
+            Width: =276
+            X: =614
+            Y: =1924
+      - Label2_5:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =85
+            Size: =30
+            Text: |-
+              =//"Edit Comments and Submit"
+              //If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", "Enter comments and submit", "Enter comments and approve or send it back")
+              If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", "Enter comments and approve or send it back", "Enter comments and approve or send it back")
+            X: =236
+            Y: =53
+      - Label1_2:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            AutoHeight: =true
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =58
+            Text: =If(First([@PowerBIIntegration].Data).Role = "Scientific Reviewer", "Logged in as Scientific Reviewer", "Logged in as Medical Reviewer")
+            Width: =456
+            X: =295
+      - icon_backToSingleEdit:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Height: =86
+            Icon: =Icon.BackArrow
+            OnSelect: =Navigate('Scientific Reviewer',BorderStyle.None);
+            Width: =96
+            X: =26
+            Y: =64
+      - html_blurCSS_1:
+          Control: HtmlViewer@2.1.0
+          Group: grp_loadingScreen
+          Properties:
+            Font: =Font.'Open Sans'
+            Height: =2100
+            HtmlText: |
+              ="<div style='
+                width: "& Self.Width &"px;
+                height: "& Self.Height &"px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px); 
+                -webkit-backdrop-filter: blur(10px);
+              '></div>"
+            Visible: =showSpinner
+            Width: =1000
+      - Rectangle1:
+          Control: Rectangle@2.3.0
+          Group: grp_loadingScreen
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(149, 191, 76, 0.8)
+            Height: =2100
+            Visible: =showSpinner
+            Width: =1000
+      - img_Infinity:
+          Control: Image@2.2.3
+          Group: grp_loadingScreen
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =1694
+            Image: ='2e311c51-11b2-4861-88a9-e931d3e4f6e0'
+            Visible: =showSpinner
+            Width: =1000
+            Y: =406
+      - Label5:
+          Control: Label@2.5.1
+          Group: grp_loadingScreen
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Bold
+            Height: =867
+            Size: =100
+            Text: ="Processing updates... Please wait."
+            Visible: =showSpinner
+            Width: =1000

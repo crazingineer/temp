@@ -1,0 +1,12 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    OnStart: "=//Set(getStatus, \"\");\n\n//Set(getStatus, If(First([@PowerBIIntegration].Data).Role  = \"Scientific Reviewer\", \"Awaiting Scientific Review\", \"Awaiting Medical Review\"));\n\n\nSet(\n  \n    getStatus,\n      If(\n        Lower( Substitute( Trim( First([@PowerBIIntegration].Data).Role ), Char(160), \"\" ) ) = \"scientific reviewer\",\n        \"Awaiting Scientific Review\",\n        \"Awaiting Medical Review\"\n      )\n  \n);\n\n\nClearCollect(\n        Getdata,\n        ShowColumns(\n           \n                vs_review_workflow_data\n               // Status = getStatus\n            ,\n            Role,\n            Status,\n            data_management_query,\n            data_management_query_by_ai,\n            medical_query,\n            medical_query_by_ai,\n            medical_reviewer_comment,\n            medical_reviewer_comment_by_ai,\n            non_query_action,\n            participant_id,\n            project_code,\n            record_id,\n            scientific_reviewer_comment,\n            scientific_reviewer_comment_by_ai,\n            visit_date\n        )\n    ); "
+    Theme: =PowerAppsTheme

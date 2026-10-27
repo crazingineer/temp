@@ -1,0 +1,40 @@
+{
+  "Resources": [
+    {
+      "Name": "SampleImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg"
+    },
+    {
+      "Name": "2e311c51-11b2-4861-88a9-e931d3e4f6e0",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "f702f6bf-753b-457e-b2c1-85c6fe103a28.svg",
+      "Path": "Assets\\Images\\f702f6bf-753b-457e-b2c1-85c6fe103a28.svg",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil105eus.blob.core.windows.net/ab592155-2443-4344-a6bf-5cbb11325066-1/resource/ZjcwMmY2YmYtNzUzYi00NTdlLWIyYzEtODVjNmZlMTAzYTI4.svg?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-03-25T09%3A04%3A43Z&ske=2026-03-26T09%3A19%3A43Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-03-26T09%3A19%3A43Z&sr=b&sp=r&sig=14FTunenVYBo5a7a5Gbvy0oCx30JeJCma%2BrLvOtHHzQ%3D"
+    },
+    {
+      "Name": "Toast_Notification_Ui_Design_at_Annie_Ettinger_blog-removebg-preview",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "5baf9c12-b77f-498e-ace7-2d59c3a208c2.png",
+      "Path": "Assets\\Images\\5baf9c12-b77f-498e-ace7-2d59c3a208c2.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil105eus.blob.core.windows.net/ab592155-2443-4344-a6bf-5cbb11325066-1/resource/NWJhZjljMTItYjc3Zi00OThlLWFjZTctMmQ1OWMzYTIwOGMy.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2026-03-25T09%3A04%3A43Z&ske=2026-03-26T09%3A19%3A43Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2026-03-26T09%3A19%3A43Z&sr=b&sp=r&sig=y9RtsjiAHNf6CRv1haSn0jSyGfLC%2BmHHxLCUzkRxqRg%3D"
+    }
+  ]
+}
